@@ -5,6 +5,17 @@ name: Test variables
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        default: TEST
+        options:
+          - TEST
+          - PROD
+
+env:
+  if: ${{ github.inputs.environment }} == PROD
+  FTP_SERVER: ${{ secrets.FTP_USER_PROD}}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -15,6 +26,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
+        if: ${{ job.status == 'failure' }}
+        
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo $FTP_SERVER
