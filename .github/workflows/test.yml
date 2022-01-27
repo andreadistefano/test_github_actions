@@ -13,20 +13,22 @@ on:
           - TEST
           - PROD
 
-env:
-  if: ${{ github.inputs.environment }} == PROD
-  FTP_SERVER: ${{ secrets.FTP_USER_PROD}}
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
     runs-on: ubuntu-latest
-
+  
     steps:
+    - name: Setup TEST variables
+      if: ${{ github.inputs.environment }} == TEST
+      run: |
+        echo "FTP_SERVER=$(echo ${{ secrets.FTP_USER_TEST}} )" >> $GITHUB_ENV
+  
+    - name: Setup PROD variables
+      if: ${{ github.inputs.environment }} == TEST
+      run: |
+        echo "FTP_SERVER=$(echo ${{ secrets.FTP_USER_PROD}} )" >> $GITHUB_ENV
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        if: ${{ job.status == 'failure' }}
-        
-        run: |
-          echo $FTP_SERVER
+    - name: Run a multi-line script
+      run: |
+        echo il valore è $ {{ env.FTP_SERVER }}
