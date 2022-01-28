@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup TEST variables
-      if: ${{ github.inputs.environment }} == TEST
+      if: ${{ github.event.inputs.environment }} == TEST
       run: |
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
         echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
   
     - name: Setup PROD variables
-      if: ${{ github.inputs.environment }} == TEST
+      if: ${{ github.event.inputs.environment }} == PROD
       run: |
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
@@ -34,7 +34,7 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo il valore di github.inputs.environment è ${{ github.inputs.environment }}
+        echo il valore di github.event.inputs.environment è ${{ github.event.inputs.environment }}
         echo il valore di env.FPT_SERVER è ${{ env.FTP_SERVER }}
         echo il valore di env.FPT_USER è ${{ env.FTP_USER }}
-        echo il valore di env.FPT_PWD è ${{ env.FTP_USER }}
+        echo il valore di env.FPT_PWD è ${{ env.FTP_PWD }}
