@@ -35,6 +35,6 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo il valore di github.event.inputs.environment è ${{ github.event.inputs.environment }}
-        echo il valore di env.FPT_SERVER è ${{ env.FTP_SERVER }}
-        echo il valore di env.FPT_USER è ${{ env.FTP_USER }}
-        echo il valore di env.FPT_PWD è ${{ env.FTP_PWD }}
+        echo il valore di env.FTP_SERVER è ${{ env.FTP_SERVER }}
+        echo il valore di env.FTP_USER è ${{ env.FTP_USER }}
+        echo il valore di env.FTP_PWD è ${{ env.FTP_PWD }}
