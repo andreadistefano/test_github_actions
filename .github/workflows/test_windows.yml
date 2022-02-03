@@ -23,17 +23,17 @@ jobs:
       run: |
         if ('${{ github.event.inputs.environment }}' -ceq 'PROD')
         {
-          echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
-          echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
-          echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_PROD }})" >> $GITHUB_ENV
-          echo "TOPOLINO=$(echo nonnapapera_prod)" >> $GITHUB_ENV
+          echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_PROD }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "TOPOLINO=$(echo nonnapapera_prod)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
         }
         else
         {
-          echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
-          echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
-          echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
-          echo "TOPOLINO=$(echo paperone_test)" >> $GITHUB_ENV
+          echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "TOPOLINO=$(echo paperone_test)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
         }
       
         
