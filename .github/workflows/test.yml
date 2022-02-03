@@ -6,10 +6,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      pippo:
-        type: string
-        default: pluto
-        
+
       environment:
         type: choice
         default: TEST
@@ -17,17 +14,16 @@ on:
           - TEST
           - PROD
 
+env:
+  pippo: 'pluto'
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    # - name: Setup TEST variables
-    #   if: ${{ github.event.inputs.environment }} == TEST
-    #   with:
-    #     pippo: paperino
     
-    - name: Setup TEST variables - 2
-      if: ${{ github.event.inputs.environment }} == "TEST"
+    - name: Setup TEST variables
+      if: ${{ github.event.inputs.environment }} == 'TEST'
       run: |
         echo "${{ github.event.inputs.pippo }}"
         echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $github.event.inputs.pippo
@@ -38,7 +34,7 @@ jobs:
         echo "${{ github.event.inputs.pippo }}"
   
     - name: Setup PROD variables
-      if: ${{ github.event.inputs.environment }} == "PROD"
+      if: ${{ github.event.inputs.environment }} == 'PROD'
       run: |
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
@@ -53,3 +49,4 @@ jobs:
         echo il valore di env.FTP_USER è ${{ env.FTP_USER }}
         echo il valore di env.FTP_PWD è ${{ env.FTP_PWD }}
         echo il valore di env.TOPOLINO è ${{ env.TOPOLINO }}
+        echo il valore di env.pippo è ${{ env.pippo }}
