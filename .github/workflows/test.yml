@@ -21,10 +21,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup TEST variables
-      if: ${{ github.event.inputs.environment }} == TEST
-      with:
-        pippo: paperino
+    # - name: Setup TEST variables
+    #   if: ${{ github.event.inputs.environment }} == TEST
+    #   with:
+    #     pippo: paperino
     
     - name: Setup TEST variables - 2
       if: ${{ github.event.inputs.environment }} == TEST
