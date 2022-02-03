@@ -15,31 +15,32 @@ on:
           - PROD
 
 env:
-  pippo: 'pluto'
+  pippo:
+    if ${{ github.event.inputs.environment }} == 'TEST'
+       'pippo_test'
+    else
+       'pippo_prod'
+    fi
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Setup TEST variables
-      if: ${{ github.event.inputs.environment }} == 'TEST'
+    - name: Setup variables
       run: |
-        echo "${{ github.event.inputs.pippo }}"
-        echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $github.event.inputs.pippo
-        echo "TOPOLINO=$(echo paperone)" >> $GITHUB_ENV
-        echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
-        echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
-        echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
-        echo "${{ github.event.inputs.pippo }}"
-  
-    - name: Setup PROD variables
-      if: ${{ github.event.inputs.environment }} == 'PROD'
-      run: |
-        echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
-        echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
-        echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_PROD }})" >> $GITHUB_ENV
-        echo "TOPOLINO=$(echo nonnapapera)" >> $GITHUB_ENV
+        if ${{ github.event.inputs.environment }} == 'TEST'
+          echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
+          echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
+          echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
+          echo "TOPOLINO=$(echo paperone_test)" >> $GITHUB_ENV
+        else 
+          echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
+          echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
+          echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_PROD }})" >> $GITHUB_ENV
+          echo "TOPOLINO=$(echo nonnapapera_prod)" >> $GITHUB_ENV
+        fi
+      
         
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
