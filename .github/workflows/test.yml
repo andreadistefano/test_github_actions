@@ -6,6 +6,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
+      pippo:
+        type: string
+        default: pluto
+        
       environment:
         type: choice
         default: TEST
@@ -20,9 +24,12 @@ jobs:
     - name: Setup TEST variables
       if: ${{ github.event.inputs.environment }} == TEST
       run: |
+        echo "${{ github.event.inputs.pippo }}"
+        echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $pippo
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
         echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
+        echo "${{ github.event.inputs.pippo }}"
   
     - name: Setup PROD variables
       if: ${{ github.event.inputs.environment }} == PROD
