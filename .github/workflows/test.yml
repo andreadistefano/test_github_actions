@@ -27,7 +27,7 @@ jobs:
     #     pippo: paperino
     
     - name: Setup TEST variables - 2
-      if: ${{ github.event.inputs.environment }} == TEST
+      if: ${{ github.event.inputs.environment }} == "TEST"
       run: |
         echo "${{ github.event.inputs.pippo }}"
         echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $github.event.inputs.pippo
@@ -38,7 +38,7 @@ jobs:
         echo "${{ github.event.inputs.pippo }}"
   
     - name: Setup PROD variables
-      if: ${{ github.event.inputs.environment }} == PROD
+      if: ${{ github.event.inputs.environment }} == "PROD"
       run: |
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
