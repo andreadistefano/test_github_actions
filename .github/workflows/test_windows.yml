@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: Test variables
+name: Test variables windows
 
 # Controls when the workflow will run
 on:
@@ -21,7 +21,7 @@ jobs:
     
     - name: Setup variables
       run: |
-        if ('${{ github.event.inputs.environment }}' == 'PROD')
+        if ('${{ github.event.inputs.environment }}' -ceq 'PROD')
         {
           echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
           echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
