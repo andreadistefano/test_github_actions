@@ -21,7 +21,7 @@ jobs:
     
     - name: Setup variables
       run: |
-        if ${{ github.event.inputs.environment }} == 'TEST'; then
+        if ${{ github.event.inputs.environment }} == TEST; then
           echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
           echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
           echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
@@ -42,4 +42,3 @@ jobs:
         echo il valore di env.FTP_USER è ${{ env.FTP_USER }}
         echo il valore di env.FTP_PWD è ${{ env.FTP_PWD }}
         echo il valore di env.TOPOLINO è ${{ env.TOPOLINO }}
-        echo il valore di env.pippo è ${{ env.pippo }}
