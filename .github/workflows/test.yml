@@ -25,7 +25,7 @@ jobs:
       if: ${{ github.event.inputs.environment }} == TEST
       run: |
         echo "${{ github.event.inputs.pippo }}"
-        echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $pippo
+        echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $github.event.inputs.pippo
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
         echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
