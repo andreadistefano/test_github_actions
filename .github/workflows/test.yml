@@ -23,9 +23,15 @@ jobs:
     steps:
     - name: Setup TEST variables
       if: ${{ github.event.inputs.environment }} == TEST
+      with:
+        pippo: paperino
+    
+    - name: Setup TEST variables - 2
+      if: ${{ github.event.inputs.environment }} == TEST
       run: |
         echo "${{ github.event.inputs.pippo }}"
         echo "$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $github.event.inputs.pippo
+        echo "TOPOLINO=$(echo paperone)" >> $GITHUB_ENV
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_TEST }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_TEST }})" >> $GITHUB_ENV
         echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_TEST }})" >> $GITHUB_ENV
@@ -37,6 +43,7 @@ jobs:
         echo "FTP_SERVER=$(echo ${{ secrets.FTP_SERVER_PROD }})" >> $GITHUB_ENV
         echo "FTP_USER=$(echo ${{ secrets.FTP_USER_PROD }})" >> $GITHUB_ENV
         echo "FTP_PWD=$(echo ${{ secrets.FTP_PWD_PROD }})" >> $GITHUB_ENV
+        echo "TOPOLINO=$(echo nonnapapera)" >> $GITHUB_ENV
         
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
@@ -45,3 +52,4 @@ jobs:
         echo il valore di env.FTP_SERVER è ${{ env.FTP_SERVER }}
         echo il valore di env.FTP_USER è ${{ env.FTP_USER }}
         echo il valore di env.FTP_PWD è ${{ env.FTP_PWD }}
+        echo il valore di env.TOPOLINO è ${{ env.TOPOLINO }}
