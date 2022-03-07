@@ -30,19 +30,31 @@ jobs:
         tokenSuffix: '___'
         files: '["appsettings.*.json"]'
       env:
-        DB_USER_TEST: ${{secrets.DB_USER_TEST}}
-        DB_PWD_TEST: ${{secrets.DB_PWD_TEST}}
-        DB_HOST_TEST: ${{secrets.DB_HOST_TEST}}
-        DB_NAME_TEST:  ${{secrets.DB_NAME_TEST}}
+        DB_USER_TEST: user_test
+        DB_PWD_TEST: pwd_test
+        DB_HOST_TEST: host_test
+        DB_NAME_TEST:  name_test
+        # DB_USER_TEST: ${{secrets.DB_USER_TEST}}
+        # DB_PWD_TEST: ${{secrets.DB_PWD_TEST}}
+        # DB_HOST_TEST: ${{secrets.DB_HOST_TEST}}
+        # DB_NAME_TEST:  ${{secrets.DB_NAME_TEST}}
         
-        DB_USER_PROD: ${{secrets.DB_USER_PROD}}
-        DB_PWD_PROD: ${{secrets.DB_PWD_PROD}}
-        DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
-        DB_NAME_PROD:  ${{secrets.DB_NAME_PROD}}
+        DB_USER_PROD: user_prod
+        DB_PWD_PROD: pwd_prod
+        DB_HOST_PROD: host_prod
+        DB_NAME_PROD:  name_prod
+        # DB_USER_PROD: ${{secrets.DB_USER_PROD}}
+        # DB_PWD_PROD: ${{secrets.DB_PWD_PROD}}
+        # DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
+        # DB_NAME_PROD:  ${{secrets.DB_NAME_PROD}}
 
     - name: cat appsettings.Test.json
       run: |
         type .\appsettings.Test.json
+    
+    - name: cat appsettings.Production.json
+      run: |
+        type .\appsettings.Production.json
 
     - name: Setup variables
       run: |
