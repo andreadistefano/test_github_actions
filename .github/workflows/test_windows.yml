@@ -56,17 +56,17 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo il valore di github.event.inputs.environment è ${{ github.event.inputs.environment }}
-        echo il valore di env.FTP_SERVER è ${{ env.FTP_SERVER }}
-        echo il valore di env.FTP_USER è ${{ env.FTP_USER }}
-        echo il valore di env.FTP_PWD è ${{ env.FTP_PWD }}
-        echo il valore di env.TOPOLINO è ${{ env.TOPOLINO }}
-        echo il valore di env.DB_USER_TEST è ${{ env.DB_USER_TEST }}
-        echo il valore di env.DB_PWD_TEST è ${{ env.DB_PWD_TEST }}
-        echo il valore di env.DB_HOST_TEST è ${{ env.DB_HOST_TEST }}
-        echo il valore di env.DB_NAME_TEST è ${{ env.DB_NAME_TEST }}
-        echo il valore di env.DB_USER_PROD è ${{ env.DB_USER_PROD }}
-        echo il valore di env.DB_PWD_PROD è ${{ env.DB_PWD_PROD }}
-        echo il valore di env.DB_HOST_PROD è ${{ env.DB_HOST_PROD }}
-        echo il valore di env.DB_NAME_PROD è ${{ env.DB_NAME_PROD }}
+        echo "il valore di github.event.inputs.environment è ${{ github.event.inputs.environment }}"
+        echo "il valore di env.FTP_SERVER è ${{ env.FTP_SERVER }}"
+        echo "il valore di env.FTP_USER è ${{ env.FTP_USER }}"
+        echo "il valore di env.FTP_PWD è ${{ env.FTP_PWD }}"
+        echo "il valore di env.TOPOLINO è ${{ env.TOPOLINO }}"
+        echo "il valore di env.DB_USER_TEST è ${{ env.DB_USER_TEST }}"
+        echo "il valore di env.DB_PWD_TEST è ${{ env.DB_PWD_TEST }}"
+        echo "il valore di env.DB_HOST_TEST è ${{ env.DB_HOST_TEST }}"
+        echo "il valore di env.DB_NAME_TEST è ${{ env.DB_NAME_TEST }}"
+        echo "il valore di env.DB_USER_PROD è ${{ env.DB_USER_PROD }}"
+        echo "il valore di env.DB_PWD_PROD è ${{ env.DB_PWD_PROD }}"
+        echo "il valore di env.DB_HOST_PROD è ${{ env.DB_HOST_PROD }}"
+        echo "il valore di env.DB_NAME_PROD è ${{ env.DB_NAME_PROD }}"
 
