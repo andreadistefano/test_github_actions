@@ -40,14 +40,9 @@ jobs:
         DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
         DB_NAME_PROD:  ${{secrets.DB_NAME_PROD}}
 
-    - name: Read appsetting.Test.json
-      id: appsettings_test
-      uses: juliangruber/read-file-action@v1
-      with:
-        path: ./appsettings.Test.json
-
-    - name: Echo appsettings.Test.json
-      run: echo "${{ steps.appsettings_test.outputs.content }}"
+    - name: cat appsettings.Test.json
+      run: |
+        type .\appsettings.Test.json
 
     - name: Setup variables
       run: |
