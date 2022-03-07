@@ -19,7 +19,8 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: cschleiden/replace-tokens@v1
+    - name: Replace tokens in appsettings.*.json
+      uses: cschleiden/replace-tokens@v1
       with:
         tokenPrefix: '___'
         tokenSuffix: '___'
@@ -34,6 +35,15 @@ jobs:
         DB_PWD_PROD: ${{secrets.DB_PWD_PROD}}
         DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
         DB_NAME_PROD:  ${{secrets.DB_NAME_PROD}}
+
+    - name: Read appsetting.Test.json
+      id: appsettings_test
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./appsettings.Test.json
+
+    - name: Echo appsettings.Test.json
+      run: echo "${{ steps.appsettings_test.outputs.content }}"
 
     - name: Setup variables
       run: |
@@ -61,12 +71,3 @@ jobs:
         echo "il valore di env.FTP_USER è ${{ env.FTP_USER }}"
         echo "il valore di env.FTP_PWD è ${{ env.FTP_PWD }}"
         echo "il valore di env.TOPOLINO è ${{ env.TOPOLINO }}"
-        echo "il valore di env.DB_USER_TEST è ${{ env.DB_USER_TEST }}"
-        echo "il valore di env.DB_PWD_TEST è ${{ env.DB_PWD_TEST }}"
-        echo "il valore di env.DB_HOST_TEST è ${{ env.DB_HOST_TEST }}"
-        echo "il valore di env.DB_NAME_TEST è ${{ env.DB_NAME_TEST }}"
-        echo "il valore di env.DB_USER_PROD è ${{ env.DB_USER_PROD }}"
-        echo "il valore di env.DB_PWD_PROD è ${{ env.DB_PWD_PROD }}"
-        echo "il valore di env.DB_HOST_PROD è ${{ env.DB_HOST_PROD }}"
-        echo "il valore di env.DB_NAME_PROD è ${{ env.DB_NAME_PROD }}"
-
