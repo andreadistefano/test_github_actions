@@ -19,6 +19,10 @@ jobs:
     runs-on: windows-latest
     
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3.0.0
+
+
     - name: Replace tokens in appsettings.*.json
       uses: cschleiden/replace-tokens@v1
       with:
