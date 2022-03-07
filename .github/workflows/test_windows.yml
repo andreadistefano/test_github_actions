@@ -23,7 +23,7 @@ jobs:
       with:
         tokenPrefix: '___'
         tokenSuffix: '___'
-        files: '["**/appsettings.*.json"]'
+        files: '["appsettings.*.json"]'
       env:
         DB_USER_TEST: ${{secrets.DB_USER_TEST}}
         DB_PWD_TEST: ${{secrets.DB_PWD_TEST}}
