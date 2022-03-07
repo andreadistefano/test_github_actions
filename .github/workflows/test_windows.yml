@@ -17,8 +17,24 @@ on:
 jobs:
   test:
     runs-on: windows-latest
-    steps:
     
+    steps:
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        tokenPrefix: '___'
+        tokenSuffix: '___'
+        files: '["**/appsettings.*.json"]'
+      env:
+        DB_USER_TEST: ${{secrets.DB_USER_TEST}}
+        DB_PWD_TEST: ${{secrets.DB_PWD_TEST}}
+        DB_HOST_TEST: ${{secrets.DB_HOST_TEST}}
+        DB_NAME_TEST:  ${{secrets.DB_NAME_TEST}}
+        
+        DB_USER_PROD: ${{secrets.DB_USER_PROD}}
+        DB_PWD_PROD: ${{secrets.DB_PWD_PROD}}
+        DB_HOST_PROD: ${{secrets.DB_HOST_PROD}}
+        DB_NAME_PROD:  ${{secrets.DB_NAME_PROD}}
+
     - name: Setup variables
       run: |
         if ('${{ github.event.inputs.environment }}' -ceq 'PROD')
@@ -45,3 +61,12 @@ jobs:
         echo il valore di env.FTP_USER è ${{ env.FTP_USER }}
         echo il valore di env.FTP_PWD è ${{ env.FTP_PWD }}
         echo il valore di env.TOPOLINO è ${{ env.TOPOLINO }}
+        echo il valore di env.DB_USER_TEST è ${{ env.DB_USER_TEST }}
+        echo il valore di env.DB_PWD_TEST è ${{ env.DB_PWD_TEST }}
+        echo il valore di env.DB_HOST_TEST è ${{ env.DB_HOST_TEST }}
+        echo il valore di env.DB_NAME_TEST è ${{ env.DB_NAME_TEST }}
+        echo il valore di env.DB_USER_PROD è ${{ env.DB_USER_PROD }}
+        echo il valore di env.DB_PWD_PROD è ${{ env.DB_PWD_PROD }}
+        echo il valore di env.DB_HOST_PROD è ${{ env.DB_HOST_PROD }}
+        echo il valore di env.DB_NAME_PROD è ${{ env.DB_NAME_PROD }}
+
