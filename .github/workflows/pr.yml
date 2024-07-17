@@ -26,5 +26,5 @@ jobs:
           mkdir _tmp
           echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current; git log --pretty=format:'%h' -n 1) > _tmp/sha_old.txt
           cat _tmp/sha_old.txt
-          echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current; ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA}" > _tmp/sha.txt
+          echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current) ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA} > _tmp/sha.txt
           cat _tmp/sha.txt
