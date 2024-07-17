@@ -15,7 +15,7 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
-      - name: "Checkout ${{ github.head_ref_slug }} ( ${{ github.event.pull_request.head.sha }} ) for event action: ${{ github.event.action }} and event name: ${{ github.event_name }}"
+      - name: "Checkout ${{ GITHUB_HEAD_REF_SLUG }} ( ${{ github.event.pull_request.head.sha }} ) for event action: ${{ github.event.action }} and event name: ${{ github.event_name }}"
         uses: actions/checkout@v4
         with:
           persist-credentials: false
