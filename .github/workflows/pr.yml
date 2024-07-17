@@ -1,0 +1,30 @@
+name: PR
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test-commmit-sha:
+    name: test-commmit-sha
+    needs: []
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: "Checkout ${{ github.ref }} ( ${{ github.sha }} ) for event action: ${{ github.event.action }} and event name: ${{ github.event_name }}"
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - shell: bash
+        name: "Extract git sha"
+        run: |
+          mkdir _tmp
+          echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current; git log --pretty=format:'%h' -n 1) > _tmp/sha_old.txt
+          cat _tmp/sha_old.txt
+          echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current) ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA:0:7} > _tmp/sha.txt
+          cat _tmp/sha.txt
