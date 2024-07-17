@@ -15,7 +15,7 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
-      - name: "Checkout ${{ github.ref }} ( ${{ github.sha }} ) for event action: ${{ github.event.action }} and event name: ${{ github.event_name }}"
+      - name: "Checkout ${{ github.head_ref }} ( ${{ github.event.pull_request.head.sha }} ) for event action: ${{ github.event.action }} and event name: ${{ github.event_name }}"
         uses: actions/checkout@v4
         with:
           persist-credentials: false
@@ -24,7 +24,5 @@ jobs:
         name: "Extract git sha"
         run: |
           mkdir _tmp
-          echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current; git log --pretty=format:'%h' -n 1) > _tmp/sha_old.txt
-          cat _tmp/sha_old.txt
-          echo $(date +"%Y-%m-%dT%H:%M:%S%z"; git branch --show-current) ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA:0:7} > _tmp/sha.txt
+          echo $(date +"%Y-%m-%dT%H:%M:%S%z") ${GITHUB_HEAD_REF} ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA:0:7} > _tmp/sha.txt
           cat _tmp/sha.txt
