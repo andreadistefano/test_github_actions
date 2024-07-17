@@ -24,5 +24,5 @@ jobs:
         name: "Extract git sha"
         run: |
           mkdir _tmp
-          echo $(date +"%Y-%m-%dT%H:%M:%S%z") ${GITHUB_HEAD_REF_SLUG} ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA:0:7} > _tmp/sha.txt
+          echo $(date +"%Y-%m-%dT%H:%M:%S%z") ${GITHUB_HEAD_REF} ${GITHUB_EVENT_PULL_REQUEST_HEAD_SHA:0:7} > _tmp/sha.txt
           cat _tmp/sha.txt
