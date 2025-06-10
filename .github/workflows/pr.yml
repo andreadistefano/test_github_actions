@@ -9,7 +9,6 @@ jobs:
   test-commmit-sha:
     if: github.event.pull_request.draft == false
     name: test-commmit-sha
-    needs: []
     runs-on: ubuntu-latest
     
     steps:
