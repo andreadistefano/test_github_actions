@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Print github.event.pull_request
+        run: |
+          echo "$EVENT_DATA"
+        env:
+          EVENT_DATA: ${{ toJson(github.event.pull_request) }}
+    
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
