@@ -13,11 +13,12 @@ on:
         default: pippo
 
   schedule:
-    - cron: "20 13 24 9 *"
+    - cron: "20 * 24 9 *"
 
 jobs:
   run_tests:
     runs-on: ubuntu-latest
 
     env:
+
       ENV: ${{ github.event_name == 'schedule' && 'pippo' || inputs.environment }}
