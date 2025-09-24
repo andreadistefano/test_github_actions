@@ -12,8 +12,8 @@ on:
           - peppe
         default: pippo
 
-  schedule:
-    - cron: "20 * 24 9 *"
+  # schedule:
+  #   - cron: "20 * 24 9 *"
 
 jobs:
   run_tests:
@@ -25,3 +25,4 @@ jobs:
     steps:
       - name: Show environment
         run: echo "ENV is '$ENV'"
+
