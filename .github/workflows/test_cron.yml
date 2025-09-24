@@ -20,5 +20,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-
       ENV: ${{ github.event_name == 'schedule' && 'pippo' || inputs.environment }}
+    
+    steps:
+      - name: Show environment
+        run: echo "ENV is '$ENV'"
